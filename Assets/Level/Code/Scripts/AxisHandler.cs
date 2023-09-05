@@ -8,6 +8,7 @@ public class AxisHandler
     int axisIndex { get; set; }
     int axualMinValue { get; set; }
     int axualMaxValue { get; set; }
+    float inputValue { get; set; }
 
     public AxisHandler(string controlledAxis, int axisIndex, int axualMinValue, int axualMaxValue)
     {
