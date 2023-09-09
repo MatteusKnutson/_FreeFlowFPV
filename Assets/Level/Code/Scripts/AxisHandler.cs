@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AxisHandler
 {
-    string controlledAxis { get; set; }
-    int axisIndex { get; set; }
-    int axualMinValue { get; set; }
-    int axualMaxValue { get; set; }
-    float inputValue { get; set; }
+    public string controlledAxis { get; set; }
+    public int axisIndex { get; set; }
+    public int axualMinValue { get; set; }
+    public int axualMaxValue { get; set; }
+    public float inputValue { get; set; }
 
     public AxisHandler(string controlledAxis, int axisIndex, int axualMinValue, int axualMaxValue)
     {
