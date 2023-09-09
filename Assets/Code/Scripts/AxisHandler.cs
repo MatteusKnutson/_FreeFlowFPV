@@ -17,4 +17,5 @@ public class AxisHandler
         this.axualMinValue = axualMinValue;
         this.axualMaxValue = axualMaxValue;
     }
+
 }
