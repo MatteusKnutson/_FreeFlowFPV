@@ -16,7 +16,7 @@ public class InputManager : MonoBehaviour
 
     public  static List<AxisHandler> inputAxes;
 
-    string defaultAxisName = "Axis";
+    public static string defaultAxisName = "Axis";
 
     public static float GetInputValue(string defaultAxisName, int axis)
     { 
@@ -57,6 +57,6 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
-        //Debug.Log(GetConvertedInput(GetInputValue(defaultAxisName, throttle.axisIndex), 19, 900));
+
     }
 }
