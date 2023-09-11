@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class AxisHandler
 {
-    public string controlledAxis { get; set; }
+    public string controlledChannel { get; set; }
     public int axisIndex { get; set; }
     public int axualMinValue { get; set; }
     public int axualMaxValue { get; set; }
-    public float inputValue { get; set; }
 
-    public AxisHandler(string controlledAxis, int axisIndex, int axualMinValue, int axualMaxValue)
+    public AxisHandler(string controlledChannel, int axisIndex, int axualMinValue, int axualMaxValue)
     {
-        this.controlledAxis = controlledAxis;
+        this.controlledChannel = controlledChannel;
         this.axisIndex = axisIndex;
         this.axualMinValue = axualMinValue;
         this.axualMaxValue = axualMaxValue;

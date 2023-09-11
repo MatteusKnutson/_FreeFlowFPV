@@ -7,14 +7,15 @@ public class InputManager : MonoBehaviour
 {
     string controllerName;
 
-    AxisHandler throttle = new("throttle", -1, 0, 1000);
+    public static List<AxisHandler> inputChannels;
+    
+   
     AxisHandler yaw = new("yaw", -1, 0, 1000);
     AxisHandler pitch = new("pitch", -1, 0, 1000);
     AxisHandler roll = new("roll", -1, 0, 1000);
     AxisHandler reset = new("reset", -1, 0, 1000);
     AxisHandler turtle = new("turtle", -1, 0, 1000);
 
-    public  static List<AxisHandler> inputAxes;
 
     public static string defaultAxisName = "Axis";
 
@@ -24,16 +25,22 @@ public class InputManager : MonoBehaviour
         return Input.GetAxisRaw(defaultAxisName + axis);
     }
 
-    public static void SetMinValue(AxisHandler axis, int value)
+    public static void SetMinValue(AxisHandler channel, int value)
     {
-        // Sets the converted min value
-        axis.axualMinValue = value;
+        // Sets the convertion min value
+        channel.axualMinValue = value;
     }
 
-    public static void SetMaxValue(AxisHandler axis, int value)
+    public static void SetMaxValue(AxisHandler channel, int value)
     {
-        // Sets the converted max value
-        axis.axualMaxValue = value;
+        // Sets the convertion max value
+        channel.axualMaxValue = value;
+    }
+
+    public static void SetAxisValue(AxisHandler channel, int value)
+    {
+        // Sets the correct axis to the channel
+        channel.axisIndex = value;
     }
 
     public static float GetConvertedInput(float input, int actualMinValue, int actualMaxValue)
@@ -51,8 +58,17 @@ public class InputManager : MonoBehaviour
     
     private void Awake()
     {
-        inputAxes = new List<AxisHandler>() { throttle, yaw, pitch, roll, reset, turtle };
+        inputChannels = new List<AxisHandler>()
+        {
+            new("throttle", -1, 0, 1000),
+            new("yaw", -1, 0, 1000),
+            new("pitch", -1, 0, 1000),
+            new("roll", -1, 0, 1000),
+            new("reset", -1, 0, 1000),
+            new("turtle", -1, 0, 1000)
+        };
         
+
     }
 
     private void Update()
