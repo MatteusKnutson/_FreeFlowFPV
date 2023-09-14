@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -12,6 +13,7 @@ public class UI_InputManagerScript : MonoBehaviour
     public Button btn_setMax;
     public DropdownField drp_channelChoices;
     public DropdownField drp_axisChoices;
+
 
     bool SetCorrectUIComponents()
     {
@@ -53,63 +55,93 @@ public class UI_InputManagerScript : MonoBehaviour
         }
     }
 
-    int GetSelectedChannel()
+    AxisHandler GetSelectedChannel()
     {
-        // Returns the int in the inputChannels list which the user has selected
+        // Returns the InputChannel That the user selected
         string chanelName = drp_channelChoices.value;
         for (int i = 0; i < InputManager.inputChannels.Count; i++)
         {
             if(chanelName == InputManager.inputChannels[i].controlledChannel)
             {
-                return i;
+                return InputManager.inputChannels[i];
             }
         }
-        return -1;
+        return null;
     }
+
 
     void PairButtons()
     {
         // Pairs the set min and max buttons to the correct method.
-        btn_setMin.clicked += () => InputManager.SetMinValue(InputManager.inputChannels[GetSelectedChannel()], (int)InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel()));
-        btn_setMax.clicked += () => InputManager.SetMinValue(InputManager.inputChannels[GetSelectedChannel()], (int)InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel()));
-        
+        // CURRENTLY DOESNT WORK
+        try
+        {
+            btn_setMin.clickable.clicked += () => InputManager.SetMinValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
+        }
+        catch 
+        {
+            Debug.Log("HEJ");
+        }
+
     }
 
-    private void OnDrpAxisValueChanged(ChangeEvent<string> evt)
+    private void OnDrpAxisChoicesChanged(ChangeEvent<string> evt)
+    {
+        // Logic for when the input changes on the dropdown
+        string newValue = evt.newValue;
+        string oldValue = evt.previousValue;
+
+        if (newValue != "AUTO")
+        {
+            int axis = int.Parse(newValue.Remove(0, 5));
+            GetSelectedChannel().axisIndex = axis;
+        }
+
+    }
+
+    private void OnDrpChannelChoicesChanged(ChangeEvent<string> evt)
     {
         string newValue = evt.newValue;
         string oldValue = evt.previousValue;
 
-        Debug.Log("Dropdown value changed from " + oldValue + " to " + newValue);
-    }
-
-    private void Test(ChangeEvent<string> evt)
-    {
-        Debug.Log("HIHI");
+        drp_axisChoices.value = "Axis " + GetSelectedChannel().axisIndex;
     }
 
     void ShowCorrectValue()
     {
         // Shows the correct value in the progressbar
-        pgb_chanelValue.value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel()), InputManager.inputChannels[GetSelectedChannel()].axualMinValue, InputManager.inputChannels[GetSelectedChannel()].axualMaxValue);
-        pgb_chanelValue.title = (int)InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel()), InputManager.inputChannels[GetSelectedChannel()].axualMinValue, InputManager.inputChannels[GetSelectedChannel()].axualMaxValue) + "/1000";
+        pgb_chanelValue.value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue);
+        pgb_chanelValue.title = (int)InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue) + "/1000";
     }
 
     void Start()
     {
-        
         SetCorrectUIComponents();
         ReloadChannelChoices();
         SetAxisChoices();
         PairButtons();
 
-        drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisValueChanged);
+        drp_axisChoices.value = "Axis 1";
+        drp_channelChoices.value = "throttle";
 
+        drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisChoicesChanged);
+        drp_channelChoices.RegisterValueChangedCallback(OnDrpChannelChoicesChanged);
     }
 
     void Update()
     {
-        //ShowCorrectValue();
+        ShowCorrectValue();
 
+
+        // WILL BE REPLACED WITH THE BUTTONS LATER
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            InputManager.SetMinValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
+        }
+
+        if(Input.GetKeyDown(KeyCode.Tab))
+        {
+            InputManager.SetMaxValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
+        }
     }
 }
