@@ -48,7 +48,6 @@ public class UI_InputManagerScript : MonoBehaviour
     void SetAxisChoices()
     {
         drp_axisChoices.choices.Clear();
-        drp_axisChoices.choices.Add("AUTO");
         for (int i = 1; i <= 28; i++)
         {
             drp_axisChoices.choices.Add(InputManager.defaultAxisName + " " + i);
@@ -69,34 +68,14 @@ public class UI_InputManagerScript : MonoBehaviour
         return null;
     }
 
-
-    void PairButtons()
-    {
-        // Pairs the set min and max buttons to the correct method.
-        // CURRENTLY DOESNT WORK
-        try
-        {
-            btn_setMin.clickable.clicked += () => InputManager.SetMinValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
-        }
-        catch 
-        {
-            Debug.Log("HEJ");
-        }
-
-    }
-
     private void OnDrpAxisChoicesChanged(ChangeEvent<string> evt)
     {
         // Logic for when the input changes on the dropdown
         string newValue = evt.newValue;
         string oldValue = evt.previousValue;
 
-        if (newValue != "AUTO")
-        {
-            int axis = int.Parse(newValue.Remove(0, 5));
-            GetSelectedChannel().axisIndex = axis;
-        }
-
+        int axis = int.Parse(newValue.Remove(0, 5));
+        GetSelectedChannel().axisIndex = axis;
     }
 
     private void OnDrpChannelChoicesChanged(ChangeEvent<string> evt)
@@ -110,8 +89,17 @@ public class UI_InputManagerScript : MonoBehaviour
     void ShowCorrectValue()
     {
         // Shows the correct value in the progressbar
-        pgb_chanelValue.value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue);
-        pgb_chanelValue.title = (int)InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue) + "/1000";
+        if(drp_axisChoices.value != null)
+        {
+            float value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue);
+            pgb_chanelValue.value = value;
+            pgb_chanelValue.title = (int)value + " / 1000";
+        }
+        else
+        {
+            pgb_chanelValue.title = "select a channel";
+        }
+
     }
 
     void Start()
@@ -119,10 +107,6 @@ public class UI_InputManagerScript : MonoBehaviour
         SetCorrectUIComponents();
         ReloadChannelChoices();
         SetAxisChoices();
-        PairButtons();
-
-        drp_axisChoices.value = "Axis 1";
-        drp_channelChoices.value = "throttle";
 
         drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisChoicesChanged);
         drp_channelChoices.RegisterValueChangedCallback(OnDrpChannelChoicesChanged);
@@ -136,12 +120,12 @@ public class UI_InputManagerScript : MonoBehaviour
         // WILL BE REPLACED WITH THE BUTTONS LATER
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            InputManager.SetMinValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
+            GetSelectedChannel().axualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
         }
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            InputManager.SetMaxValue(GetSelectedChannel(), InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex));
+            GetSelectedChannel().axualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
         }
     }
 }

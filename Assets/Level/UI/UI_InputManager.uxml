@@ -1,9 +1,12 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgb(113, 113, 113);">
-        <ui:ProgressBar value="130" title="130/1000" name="AxisValue" high-value="1000" style="background-color: rgb(255, 255, 255); overflow: visible; left: auto; align-items: stretch; justify-content: center; color: rgb(0, 0, 0); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 0; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; -unity-background-scale-mode: stretch-to-fill;" />
-        <ui:DropdownField label="Channel" index="-1" choices="null" name="ChannelChoices" />
-        <ui:DropdownField label="Axis" index="-1" choices="null" name="AxisChoices" />
-        <ui:Button text="Set Min" display-tooltip-when-elided="true" name="SetMinValue" style="height: auto; width: auto;" />
-        <ui:Button text="Set Max" display-tooltip-when-elided="true" name="SetMaxValue" style="height: auto; width: auto;" />
+        <ui:VisualElement name="Tabs" style="display: flex; height: 66px; width: auto; background-color: rgba(255, 6, 6, 0.4); margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px;" />
+        <ui:VisualElement name="Content" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); -unity-slice-left: 0; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 4px; padding-right: 4px; padding-top: 4px; padding-bottom: 4px;">
+            <ui:ProgressBar value="130" title="130/1000" name="AxisValue" high-value="1000" style="background-color: rgb(255, 255, 255); overflow: visible; left: auto; align-items: stretch; justify-content: center; color: rgb(0, 0, 0); -unity-text-outline-color: rgb(0, 0, 0); -unity-text-outline-width: 0; background-image: none; -unity-background-image-tint-color: rgb(255, 255, 255); border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-left-width: 0; border-right-width: 0; border-top-width: 0; border-bottom-width: 0; -unity-background-scale-mode: stretch-to-fill;" />
+            <ui:DropdownField label="Channel" index="-1" choices="null" name="ChannelChoices" />
+            <ui:DropdownField label="Axis" index="-1" choices="null" name="AxisChoices" />
+            <ui:Button text="Set Min" display-tooltip-when-elided="true" name="SetMinValue" style="height: auto; width: auto;" />
+            <ui:Button text="Set Max" display-tooltip-when-elided="true" name="SetMaxValue" style="height: auto; width: auto;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>
