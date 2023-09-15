@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -23,8 +24,8 @@ public class UI_InputManagerScript : MonoBehaviour
             var root = GetComponent<UIDocument>().rootVisualElement;
 
             pgb_chanelValue = root.Q<ProgressBar>("AxisValue");
-            btn_setMin = root.Q<Button>("SetMin");
-            btn_setMax = root.Q<Button>("SetMax");
+            btn_setMin = root.Q<Button>("SetMinValue") as Button;
+            btn_setMax = root.Q<Button>("SetMaxValue") as Button;
             drp_channelChoices = root.Q<DropdownField>("ChannelChoices");
             drp_axisChoices = root.Q<DropdownField>("AxisChoices");
         }
@@ -91,9 +92,9 @@ public class UI_InputManagerScript : MonoBehaviour
         // Shows the correct value in the progressbar
         if(drp_axisChoices.value != null)
         {
-            float value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel().axualMinValue, GetSelectedChannel().axualMaxValue);
-            pgb_chanelValue.value = value;
-            pgb_chanelValue.title = (int)value + " / 1000";
+            float value = InputManager.GetConvertedInput(InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex), GetSelectedChannel());
+            pgb_chanelValue.value = value / 2 + 0.5f;
+            pgb_chanelValue.title = Math.Round(value, 4).ToString();
         }
         else
         {
@@ -102,15 +103,30 @@ public class UI_InputManagerScript : MonoBehaviour
 
     }
 
+    private void OnMaxButtonClicked(ClickEvent evt)
+    {
+        GetSelectedChannel().actualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+    }
+
+    private void OnMinButtonClicked(ClickEvent evt)
+    {
+        GetSelectedChannel().actualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+    }
+
     void Start()
     {
         SetCorrectUIComponents();
         ReloadChannelChoices();
         SetAxisChoices();
 
+        
+        btn_setMax.RegisterCallback<ClickEvent>(OnMaxButtonClicked);
+        btn_setMin.RegisterCallback<ClickEvent>(OnMinButtonClicked);
+        
         drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisChoicesChanged);
         drp_channelChoices.RegisterValueChangedCallback(OnDrpChannelChoicesChanged);
     }
+
 
     void Update()
     {
@@ -120,12 +136,12 @@ public class UI_InputManagerScript : MonoBehaviour
         // WILL BE REPLACED WITH THE BUTTONS LATER
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GetSelectedChannel().axualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+            GetSelectedChannel().actualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
         }
 
         if(Input.GetKeyDown(KeyCode.Tab))
         {
-            GetSelectedChannel().axualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+            GetSelectedChannel().actualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
         }
     }
 }

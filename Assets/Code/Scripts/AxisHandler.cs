@@ -6,15 +6,17 @@ public class AxisHandler
 {
     public string controlledChannel { get; set; }
     public int axisIndex { get; set; }
-    public float axualMinValue { get; set; }
-    public float axualMaxValue { get; set; }
+    public float actualMinValue { get; set; }
+    public float actualMaxValue { get; set; }
+    public bool isInverted { get; set; }
 
-    public AxisHandler(string controlledChannel, int axisIndex, int axualMinValue, int axualMaxValue)
+    public AxisHandler(string controlledChannel, int axisIndex, float axualMinValue, float axualMaxValue, bool isInverted)
     {
         this.controlledChannel = controlledChannel;
         this.axisIndex = axisIndex;
-        this.axualMinValue = axualMinValue;
-        this.axualMaxValue = axualMaxValue;
+        this.actualMinValue = axualMinValue;
+        this.actualMaxValue = axualMaxValue;
+        this.isInverted = isInverted;
     }
 
 }

@@ -14,18 +14,14 @@ public class InputManager : MonoBehaviour
     public static float GetInputValue(string defaultAxisName, int axis)
     { 
         // Gets the raw input data from the selected channel
-        return Input.GetAxisRaw(defaultAxisName + axis) * 500 + 500;
+        return Input.GetAxisRaw(defaultAxisName + axis);
     }
 
-    public static float GetConvertedInput(float input, float actualMinValue, float actualMaxValue)
+    public static float GetConvertedInput(float input, AxisHandler channel)
     { 
         // Gets the input which the game is going to use for controlling the drone (the converted input)
-        if (actualMinValue > actualMaxValue)
-        {
-            (actualMinValue, actualMaxValue) = (actualMaxValue, actualMinValue);
-        }
 
-        float newValue = ((input) - actualMinValue) / (actualMaxValue - actualMinValue) * 1000;
+        float newValue = ((input - channel.actualMinValue) / (channel.actualMaxValue - channel.actualMinValue) * 2 - 1);
         return newValue;
     }
     
@@ -33,12 +29,12 @@ public class InputManager : MonoBehaviour
     {
         inputChannels = new List<AxisHandler>()
         {
-            new("throttle", 3, 0, 1000),
-            new("yaw", 4, 0, 1000),
-            new("pitch", 2, 0, 1000),
-            new("roll", 1, 0, 1000),
-            new("reset", 5, 0, 1000),
-            new("turtle", 6, 0, 1000)
+            new("throttle", 3, -1, 1, false),
+            new("yaw", 4, -1, 1, false),
+            new("pitch", 2, -1, 1, false),
+            new("roll", 1, -1, 1, false),
+            new("reset", 5, -1, 1, false),
+            new("turtle", 6, -1, 1, false)
         };
         
 
