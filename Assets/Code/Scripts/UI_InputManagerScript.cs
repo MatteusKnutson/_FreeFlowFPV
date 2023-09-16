@@ -106,11 +106,13 @@ public class UI_InputManagerScript : MonoBehaviour
     private void OnMaxButtonClicked(ClickEvent evt)
     {
         GetSelectedChannel().actualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+        InputManager.InvertMinMaxValues(GetSelectedChannel());
     }
 
     private void OnMinButtonClicked(ClickEvent evt)
     {
         GetSelectedChannel().actualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
+        InputManager.InvertMinMaxValues(GetSelectedChannel());
     }
 
     void Start()
@@ -143,5 +145,6 @@ public class UI_InputManagerScript : MonoBehaviour
         {
             GetSelectedChannel().actualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
         }
+
     }
 }
