@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     string controllerName;
 
     public static List<AxisHandler> inputChannels;
+    public static List<RatesHandler> rates;
 
     public static string defaultAxisName = "Axis";
 
