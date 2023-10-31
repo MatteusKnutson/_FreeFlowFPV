@@ -86,6 +86,13 @@ public class InputManager : MonoBehaviour
             new("reset", 5, -1, 1, false),
             new("turtle", 6, -1, 1, false)
         };
+
+        rates = new List<RatesHandler>() 
+        {
+            new("roll", 1f, 0.7f, 0f),
+            new("pith", 1f, 0.7f, 0f),
+            new("yaw", 1f, 0.7f, 0f)
+        };
         
 
     }

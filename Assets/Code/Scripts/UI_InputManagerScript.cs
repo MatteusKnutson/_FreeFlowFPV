@@ -133,18 +133,5 @@ public class UI_InputManagerScript : MonoBehaviour
     void Update()
     {
         ShowCorrectValue();
-
-
-        // WILL BE REPLACED WITH THE BUTTONS LATER
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetSelectedChannel().actualMinValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
-        }
-
-        if(Input.GetKeyDown(KeyCode.Tab))
-        {
-            GetSelectedChannel().actualMaxValue = InputManager.GetInputValue(InputManager.defaultAxisName, GetSelectedChannel().axisIndex);
-        }
-
     }
 }

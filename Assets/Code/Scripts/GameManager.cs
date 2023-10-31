@@ -16,7 +16,11 @@ public class GameManager : MonoBehaviour
         {
             if (controlsUI.isActiveAndEnabled) 
             {
-                
+                controlsUI.enabled = false;
+            }
+            else
+            {
+                controlsUI.enabled = true;
             }
         }
     }
@@ -33,6 +37,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        OpenControlsWindow();
     }
 }
