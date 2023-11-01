@@ -25,6 +25,16 @@ public class DroneRotationController : MonoBehaviour
     void FixedUpdate()
     {
         angularSpeed = r.angularVelocity.magnitude * Mathf.Rad2Deg;
-        r.angularVelocity = new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]) * Mathf.Deg2Rad, GetRotationSpeedDeg(InputManager.inputChannels[1]) * Mathf.Deg2Rad, -1 * GetRotationSpeedDeg(InputManager.inputChannels[3]) * Mathf.Deg2Rad);
+        //r.angularVelocity = new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]) * Mathf.Deg2Rad, GetRotationSpeedDeg(InputManager.inputChannels[1]) * Mathf.Deg2Rad, -1 * GetRotationSpeedDeg(InputManager.inputChannels[3]) * Mathf.Deg2Rad);
+
+        transform.Rotate(new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]), GetRotationSpeedDeg(InputManager.inputChannels[1]), -1 * GetRotationSpeedDeg(InputManager.inputChannels[3])) * Time.deltaTime);
+
+        r.AddRelativeForce(
+            new Vector3(0,
+                InputManager.GetConvertedInput(
+                    InputManager.GetInputValue(InputManager.defaultAxisName, InputManager.inputChannels[0].axisIndex),
+                        InputManager.inputChannels[0]) * 9.82f * 4, 0));
+
+        
     }
 }
