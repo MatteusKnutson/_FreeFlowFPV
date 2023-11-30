@@ -15,6 +15,12 @@ public class DroneRotationController : MonoBehaviour
                     InputManager.GetInputValue(InputManager.defaultAxisName, inputChannel.axisIndex), inputChannel), 0.8f, 0.7f, 0.4f);
     }
 
+    void RotateDrone(Vector3 rotationSpeedDPS)
+    {
+        transform.Rotate(rotationSpeedDPS * Time.deltaTime, Space.Self);
+        r.rotation = transform.rotation;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +33,8 @@ public class DroneRotationController : MonoBehaviour
         angularSpeed = r.angularVelocity.magnitude * Mathf.Rad2Deg;
         //r.angularVelocity = new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]) * Mathf.Deg2Rad, GetRotationSpeedDeg(InputManager.inputChannels[1]) * Mathf.Deg2Rad, -1 * GetRotationSpeedDeg(InputManager.inputChannels[3]) * Mathf.Deg2Rad);
 
-        transform.Rotate(new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]), GetRotationSpeedDeg(InputManager.inputChannels[1]), -1 * GetRotationSpeedDeg(InputManager.inputChannels[3])) * Time.deltaTime);
-
-        r.AddRelativeForce(
-            new Vector3(0,
-                InputManager.GetConvertedInput(
-                    InputManager.GetInputValue(InputManager.defaultAxisName, InputManager.inputChannels[0].axisIndex),
-                        InputManager.inputChannels[0]) * 9.82f * 4, 0));
+        Vector3 rotation = new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2]), GetRotationSpeedDeg(InputManager.inputChannels[1]), -GetRotationSpeedDeg(InputManager.inputChannels[3]));
+        RotateDrone(rotation);
 
         
     }
