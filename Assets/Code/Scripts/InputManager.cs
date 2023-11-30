@@ -89,9 +89,9 @@ public class InputManager : MonoBehaviour
 
         rates = new List<RatesHandler>() 
         {
-            new("roll", 1f, 0.7f, 0f),
-            new("pith", 1f, 0.7f, 0f),
-            new("yaw", 1f, 0.7f, 0f)
+            new("roll", 0.8f, 0.7f, 0.4f),
+            new("pith", 0.8f, 0.7f, 0.4f),
+            new("yaw", 0.8f, 0.7f, 0.2f)
         };
         
 
@@ -101,6 +101,5 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         
-        BetaflightRateCalc(GetConvertedInput(GetInputValue(defaultAxisName, inputChannels[1].axisIndex), inputChannels[1]), 0.8f, 0.7f, 0.2f);
     }
 }
