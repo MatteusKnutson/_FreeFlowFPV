@@ -1,0 +1,4 @@
+test {
+    -unity-font-style: bold;
+    color: rgb(41, 41, 41);
+}

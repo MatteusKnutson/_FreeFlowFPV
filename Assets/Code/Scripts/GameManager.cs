@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour
         {
             if (controlsUI.isActiveAndEnabled) 
             {
-                controlsUI.enabled = false;
+                controlsUI.gameObject.SetActive(false);
             }
             else
             {
-                controlsUI.enabled = true;
+                controlsUI.gameObject.SetActive(true);
             }
         }
     }
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        controlsUI.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

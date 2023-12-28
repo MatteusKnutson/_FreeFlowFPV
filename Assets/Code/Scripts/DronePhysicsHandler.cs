@@ -26,7 +26,6 @@ public class DronePhysicsHandler : MonoBehaviour
 
         float appliedForce = GetAppliedForce(motorRPM, droneHandler.propDiameter, droneHandler.propPitch, r.velocity.magnitude);
 
-        Debug.Log(controllerThrottleInput + ", " + appliedForce + ", " + r.velocity.magnitude);
         r.AddRelativeForce(new Vector3(0, appliedForce * 4, 0), ForceMode.Force);
     }
 

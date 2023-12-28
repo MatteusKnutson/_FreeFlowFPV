@@ -14,6 +14,7 @@ public class UI_InputManagerScript : MonoBehaviour
     public Button btn_setMax;
     public DropdownField drp_channelChoices;
     public DropdownField drp_axisChoices;
+    public Button btn_close;
 
 
     bool SetCorrectUIComponents()
@@ -28,6 +29,7 @@ public class UI_InputManagerScript : MonoBehaviour
             btn_setMax = root.Q<Button>("SetMaxValue") as Button;
             drp_channelChoices = root.Q<DropdownField>("ChannelChoices");
             drp_axisChoices = root.Q<DropdownField>("AxisChoices");
+            btn_close = root.Q<Button>("Close") as Button;
         }
         catch
         {
@@ -84,6 +86,7 @@ public class UI_InputManagerScript : MonoBehaviour
         string newValue = evt.newValue;
         string oldValue = evt.previousValue;
 
+        drp_axisChoices.visible = true;
         drp_axisChoices.value = "Axis " + GetSelectedChannel().axisIndex;
     }
 
@@ -115,19 +118,30 @@ public class UI_InputManagerScript : MonoBehaviour
         InputManager.InvertMinMaxValues(GetSelectedChannel());
     }
 
-    void Start()
+    private void OnCloseClicked(ClickEvent evt)
     {
+        gameObject.SetActive(false);
+    }
+
+
+    private void OnEnable()
+    {
+        Debug.Log("Test");
         SetCorrectUIComponents();
         ReloadChannelChoices();
         SetAxisChoices();
 
-        
+
         btn_setMax.RegisterCallback<ClickEvent>(OnMaxButtonClicked);
         btn_setMin.RegisterCallback<ClickEvent>(OnMinButtonClicked);
-        
+        btn_close.RegisterCallback<ClickEvent>(OnCloseClicked);
+
         drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisChoicesChanged);
         drp_channelChoices.RegisterValueChangedCallback(OnDrpChannelChoicesChanged);
+        drp_axisChoices.visible = false;
     }
+
+    
 
 
     void Update()
