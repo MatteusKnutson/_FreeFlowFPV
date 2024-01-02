@@ -6,24 +6,38 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public UIDocument controlsUI;
+    public UIDocument ratesUI;
 
 
     // ----- TEMPORARY CODE ------ //
 
-    void OpenControlsWindow()
+    void OpenWindows()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (controlsUI.isActiveAndEnabled) 
-            {
-                controlsUI.gameObject.SetActive(false);
-            }
-            else
+            if (!controlsUI.isActiveAndEnabled && !ratesUI.isActiveAndEnabled) 
             {
                 controlsUI.gameObject.SetActive(true);
             }
+            else
+            {
+                controlsUI.gameObject.SetActive(false);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            if (!ratesUI.isActiveAndEnabled && !controlsUI.isActiveAndEnabled)
+            {
+                ratesUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                ratesUI.gameObject.SetActive(false);
+            }
         }
     }
+
 
     // ----- /TEMPORARY CODE ------ //
 
@@ -37,6 +51,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        OpenControlsWindow();
+        OpenWindows();
     }
 }

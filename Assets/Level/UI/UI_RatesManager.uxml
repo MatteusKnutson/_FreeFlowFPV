@@ -1,5 +1,35 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:VisualElement name="rates_input_div" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
-        <ui:Label tabindex="-1" text="CHANGE IN EDITOR (NOT FINNISHED)" display-tooltip-when-elided="true" />
+    <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.53); color: rgba(27, 27, 27, 0.76);">
+        <ui:Label tabindex="-1" text="Rates Editor" display-tooltip-when-elided="true" name="Header" style="color: rgb(255, 255, 255); font-size: 26px; -unity-font-style: bold; -unity-text-align: upper-center;" />
+        <ui:VisualElement name="Grid" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);">
+            <ui:VisualElement name="Row1" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: flex-end; align-self: center; justify-content: space-around; flex-direction: row; height: 0; width: 50%; color: rgb(255, 255, 255); -unity-font-style: normal;">
+                <ui:Label tabindex="-1" display-tooltip-when-elided="true" style="width: 100px;" />
+                <ui:Label tabindex="-1" text="RC Rate" display-tooltip-when-elided="true" name="Label" style="width: 100px;" />
+                <ui:Label tabindex="-1" text="S Rate" display-tooltip-when-elided="true" style="width: 100px;" />
+                <ui:Label tabindex="-1" text="RC Expo" display-tooltip-when-elided="true" style="width: 100px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Roll" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; align-self: center; justify-content: space-around; flex-direction: row; height: 0; width: 50%; color: rgb(0, 0, 0); -unity-font-style: normal;">
+                <ui:Label tabindex="-1" text="Roll" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); width: 100px;" />
+                <ui:FloatField value="1" name="RollRCR" style="width: 100px;" />
+                <ui:FloatField value="0.7" name="RollSR" style="width: 100px;" />
+                <ui:FloatField value="0" name="RollRCE" style="width: 100px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Pitch" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; align-self: center; justify-content: space-around; flex-direction: row; height: 0; width: 50%; color: rgb(0, 0, 0); -unity-font-style: normal;">
+                <ui:Label tabindex="-1" text="Pitch" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); width: 100px;" />
+                <ui:FloatField value="1" name="PitchRCR" style="width: 100px;" />
+                <ui:FloatField value="0.7" name="PitchSR" style="width: 100px;" />
+                <ui:FloatField value="0" name="PitchRCE" style="width: 100px;" />
+            </ui:VisualElement>
+            <ui:VisualElement name="Yaw" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); align-items: center; align-self: center; justify-content: space-around; flex-direction: row; height: 0; width: 50%; color: rgb(0, 0, 0); -unity-font-style: normal;">
+                <ui:Label tabindex="-1" text="Yaw" display-tooltip-when-elided="true" style="color: rgb(255, 255, 255); width: 100px;" />
+                <ui:FloatField value="1" name="YawRCR" style="width: 100px;" />
+                <ui:FloatField value="0.7" name="YawSR" style="width: 100px;" />
+                <ui:FloatField value="0" name="YawRCE" style="width: 100px;" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); height: auto; align-items: center; align-self: auto; justify-content: center;">
+            <ui:Button text="Save" display-tooltip-when-elided="true" name="Save" style="width: 10%; margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px;" />
+            <ui:Button text="Close" display-tooltip-when-elided="true" name="Close" style="width: 10%; margin-left: 8px; margin-right: 8px; margin-top: 8px; margin-bottom: 8px;" />
+        </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

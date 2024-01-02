@@ -139,9 +139,14 @@ public class UI_InputManagerScript : MonoBehaviour
         drp_axisChoices.RegisterValueChangedCallback(OnDrpAxisChoicesChanged);
         drp_channelChoices.RegisterValueChangedCallback(OnDrpChannelChoicesChanged);
         drp_axisChoices.visible = false;
+
+        Time.timeScale = 0;
     }
 
-    
+    private void OnDisable()
+    {
+        Time.timeScale = 1f;
+    }
 
 
     void Update()
