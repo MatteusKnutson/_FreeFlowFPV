@@ -51,9 +51,6 @@ public class UI_RatesManager : MonoBehaviour
             new("yaw", ratesYaw[0].value, ratesYaw[1].value, ratesYaw[2].value)
         };
 
-
-
-        Debug.Log(ratesYaw[2].value);
     }
 
     private void OnCloseClicked(ClickEvent evt)

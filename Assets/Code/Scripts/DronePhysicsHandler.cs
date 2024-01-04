@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DronePhysicsHandler : MonoBehaviour
 {
-    Rigidbody r;
-    DroneHandler droneHandler;
+    public static Rigidbody r;
+    public static DroneHandler droneHandler;
 
     // Start is called before the first frame update
     void Start()

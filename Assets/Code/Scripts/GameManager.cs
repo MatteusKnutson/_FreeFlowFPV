@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public UIDocument controlsUI;
     public UIDocument ratesUI;
+    public UIDocument droneSettingsUI;
 
 
     // ----- TEMPORARY CODE ------ //
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!controlsUI.isActiveAndEnabled && !ratesUI.isActiveAndEnabled) 
+            if (!controlsUI.isActiveAndEnabled && !ratesUI.isActiveAndEnabled && !droneSettingsUI.isActiveAndEnabled) 
             {
                 controlsUI.gameObject.SetActive(true);
             }
@@ -27,13 +28,25 @@ public class GameManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            if (!ratesUI.isActiveAndEnabled && !controlsUI.isActiveAndEnabled)
+            if (!ratesUI.isActiveAndEnabled && !controlsUI.isActiveAndEnabled && !droneSettingsUI.isActiveAndEnabled)
             {
                 ratesUI.gameObject.SetActive(true);
             }
             else
             {
                 ratesUI.gameObject.SetActive(false);
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Backspace))
+        {
+            if (!ratesUI.isActiveAndEnabled && !controlsUI.isActiveAndEnabled && !droneSettingsUI.isActiveAndEnabled)
+            {
+                droneSettingsUI.gameObject.SetActive(true);
+            }
+            else
+            {
+                droneSettingsUI.gameObject.SetActive(false);
             }
         }
     }
