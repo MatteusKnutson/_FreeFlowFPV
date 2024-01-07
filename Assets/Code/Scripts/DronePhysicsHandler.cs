@@ -12,7 +12,7 @@ public class DronePhysicsHandler : MonoBehaviour
     {
         r = GetComponent<Rigidbody>();
         //TEMP
-        droneHandler = new DroneHandler(0.7f, 2300, 4, 2, 5);
+        droneHandler = new DroneHandler(0.7f, 2300, 4, 2, 5, 25);
     }
 
     // Update is called once per frame
@@ -27,6 +27,7 @@ public class DronePhysicsHandler : MonoBehaviour
         float appliedForce = GetAppliedForce(motorRPM, droneHandler.propDiameter, droneHandler.propPitch, r.velocity.magnitude);
 
         r.AddRelativeForce(new Vector3(0, appliedForce * 4, 0), ForceMode.Force);
+
     }
 
     public float GetMotorRPM(float motorKv, float suppliedVoltage)

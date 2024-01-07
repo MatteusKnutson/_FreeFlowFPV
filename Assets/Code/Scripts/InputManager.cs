@@ -13,6 +13,9 @@ public class InputManager : MonoBehaviour
 
     public static string defaultAxisName = "Axis";
 
+    Vector3 startPos;
+    public Transform drone;
+
     public static float GetInputValue(string defaultAxisName, int axis)
     { 
         // Gets the raw input data from the selected channel
@@ -74,6 +77,7 @@ public class InputManager : MonoBehaviour
 
         return angleRate;
     }
+
     
     private void Awake()
     {
@@ -93,11 +97,24 @@ public class InputManager : MonoBehaviour
             new("pith", 1f, 0.7f, 0f),
             new("yaw", 1f, 0.7f, 0f)
         };
+
+        startPos = drone.position;
     }
 
 
     private void Update()
     {
-        
+        if (GetConvertedInput(GetInputValue("Axis", inputChannels[4].axisIndex), inputChannels[4]) > 0.5)
+        {
+            drone.position = startPos;
+            drone.rotation = Quaternion.Euler(0f, 0f, 0f);
+            drone.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+        if (GetConvertedInput(GetInputValue("Axis", inputChannels[5].axisIndex), inputChannels[5]) > 0.5)
+        {
+            drone.rotation = Quaternion.Euler(0f, drone.eulerAngles.y, 0f);
+            drone.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        }
+
     }
 }

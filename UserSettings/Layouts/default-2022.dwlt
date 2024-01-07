@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Project
+  m_Title: Scene
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: InspectorWindow
+  m_Name: LightingWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -269,14 +269,14 @@ MonoBehaviour:
     y: 0
     width: 454
     height: 947
-  m_MinSize: {x: 276, y: 71}
+  m_MinSize: {x: 391, y: 411}
   m_MaxSize: {x: 4001, y: 4021}
-  m_ActualView: {fileID: 17}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 17}
   - {fileID: 12}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -348,9 +348,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 027e0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 12fbffff
+      m_ExpandedIDs: 6289fcff828afcff1e8dfcffd6b7fcfffac5fcffe202ffffe602ffff78faffff10fbffff12fbffff1279000018790000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -464,7 +464,7 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 0, y: 0}
+      snapOffset: {x: 0, y: 25}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: unity-transform-toolbar
@@ -724,11 +724,11 @@ MonoBehaviour:
       floating: 0
       collapsed: 0
       displayed: 1
-      snapOffset: {x: 48, y: 25}
+      snapOffset: {x: 48, y: 10}
       snapOffsetDelta: {x: 0, y: 0}
       snapCorner: 0
       id: UnityEditor.SceneViewCameraOverlay
-      index: 8
+      index: 13
       layout: 4
       size: {x: 0, y: 0}
       sizeOverriden: 0
@@ -808,9 +808,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 645.11304, y: -67.851166, z: 15.0503235}
+    m_Target: {x: 661.1496, y: 99.31941, z: 261.93286}
     speed: 2
-    m_Value: {x: 645.11304, y: -67.851166, z: 15.0503235}
+    m_Value: {x: 661.1496, y: 99.31941, z: 261.93286}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -856,13 +856,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.06676518, y: -0.8643648, z: 0.48385924, w: 0.1195389}
+    m_Target: {x: 0.041210737, y: 0.86798555, z: -0.07345169, w: 0.48975426}
     speed: 2
-    m_Value: {x: -0.06676518, y: 0.8643648, z: -0.48385924, w: -0.1195389}
+    m_Value: {x: 0.04120349, y: 0.86783296, z: -0.07343878, w: 0.48966816}
   m_Size:
-    m_Target: 218.49123
+    m_Target: 5.5265803
     speed: 2
-    m_Value: 218.49123
+    m_Value: 5.5265803
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -930,9 +930,9 @@ MonoBehaviour:
     m_SceneHandles: 
     m_ShowAllHits: 0
     m_SkipHidden: 0
-    m_SearchArea: 1
+    m_SearchArea: 2
     m_Folders:
-    - Assets
+    - Assets/Flooded_Grounds/Prefabs/Nature/Grass
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -940,16 +940,16 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Flooded_Grounds/Prefabs/Nature/Grass
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Documents\Projects\UNITY Projects\FreeFlowFPV
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 79}
-    m_SelectedIDs: 287c0000
-    m_LastClickedID: 31784
-    m_ExpandedIDs: 00000000287c00002a7c00002c7c00002e7c0000307c0000327c0000347c0000367c0000387c00003c7c00003e7c0000ee7d0000fc7d0000047e0000b27f0000bc7f000000ca9a3b
+    scrollPos: {x: 0, y: 545}
+    m_SelectedIDs: 587e0000
+    m_LastClickedID: 32344
+    m_ExpandedIDs: 00000000e87b0000ea7b0000ec7b0000ee7b0000f07b0000f27b0000f47b0000f67b0000f87b0000fa7b0000fc7b0000fe7b0000007c0000b87d0000be7d0000c47d0000467e00005c7e0000c482000010c4000012c4000014c4000016c4000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -977,7 +977,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000287c00002a7c00002c7c00002e7c0000307c0000327c0000347c0000367c0000387c00003a7c00003c7c00003e7c0000
+    m_ExpandedIDs: 00000000e87b0000ea7b0000ec7b0000ee7b0000f07b0000f27b0000f47b0000f67b0000f87b0000fa7b0000fc7b0000fe7b0000007c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -10,9 +10,12 @@ public class UI_DroneSettings : MonoBehaviour
     public FloatField motor_kv;
     public FloatField battery_c;
     public FloatField drone_weight;
+    public FloatField camera_angle;
 
     public Button btn_save;
     public Button btn_close;
+
+    public Transform fpvCamera;
 
     bool SetCorrectUiComponents()
     {
@@ -25,6 +28,7 @@ public class UI_DroneSettings : MonoBehaviour
             motor_kv = root.Q<FloatField>("s_motor_kv");
             battery_c = root.Q<FloatField>("s_battery_c");
             drone_weight = root.Q<FloatField>("s_drone_weight");
+            camera_angle = root.Q<FloatField>("s_camera_angle");
 
             btn_save = root.Q<Button>("Save") as Button;
             btn_close = root.Q<Button>("Close") as Button;
@@ -39,9 +43,11 @@ public class UI_DroneSettings : MonoBehaviour
 
     private void OnSaveClicked(ClickEvent evt)
     {
-        DronePhysicsHandler.droneHandler = new DroneHandler(drone_weight.value,motor_kv.value,battery_c.value, prop_pitch.value, prop_d.value);
+        DronePhysicsHandler.droneHandler = new DroneHandler(drone_weight.value,motor_kv.value,battery_c.value, prop_pitch.value, prop_d.value, camera_angle.value);
 
         DronePhysicsHandler.r.mass = drone_weight.value / 1000;
+
+        fpvCamera.localEulerAngles = new Vector3(-camera_angle.value, 0, 0);
     }
 
     private void OnCloseClicked(ClickEvent evt)

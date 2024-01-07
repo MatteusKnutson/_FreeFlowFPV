@@ -22,6 +22,7 @@ public class DroneRotationController : MonoBehaviour
         r.rotation = transform.rotation;
     }
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +38,6 @@ public class DroneRotationController : MonoBehaviour
         Vector3 rotation = new Vector3(GetRotationSpeedDeg(InputManager.inputChannels[2], 1), GetRotationSpeedDeg(InputManager.inputChannels[1], 0), -GetRotationSpeedDeg(InputManager.inputChannels[3], 2));
         RotateDrone(rotation);
 
-        
+
     }
 }

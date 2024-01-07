@@ -2,6 +2,7 @@
     <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.53); color: rgba(27, 27, 27, 0.76);">
         <ui:Label tabindex="-1" text="Drone Settings" display-tooltip-when-elided="true" name="Header" style="color: rgb(255, 255, 255); font-size: 26px; -unity-font-style: bold; -unity-text-align: upper-center;" />
         <ui:VisualElement name="Settings" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0); width: 50%; align-self: center; align-items: stretch;">
+            <ui:FloatField label="Camera angle" value="25" name="s_camera_angle" readonly="false" style="color: rgb(0, 0, 0); -unity-font-style: bold; margin-left: 6px; margin-right: 6px; margin-top: 6px; margin-bottom: 6px;" />
             <ui:FloatField label="Prop Diameter (&quot;)" value="5" name="s_prop_d" style="color: rgb(0, 0, 0); -unity-font-style: bold; margin-left: 6px; margin-right: 6px; margin-top: 6px; margin-bottom: 6px;" />
             <ui:FloatField label="Prop Pitch (&quot;)" value="2" name="s_prop_pitch" style="color: rgb(0, 0, 0); -unity-font-style: bold; margin-left: 6px; margin-right: 6px; margin-top: 6px; margin-bottom: 6px;" />
             <ui:FloatField label="Motor Kv" value="2300" name="s_motor_kv" style="color: rgb(0, 0, 0); -unity-font-style: bold; margin-left: 6px; margin-right: 6px; margin-top: 6px; margin-bottom: 6px;" />
