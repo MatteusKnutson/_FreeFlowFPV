@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class InputManager : MonoBehaviour
 {
+    // Input management and calculations to enable interactions between drone controller and simulation
+
     string controllerName;
 
     public static List<AxisHandler> inputChannels;
@@ -46,36 +48,6 @@ public class InputManager : MonoBehaviour
         {
             channel.isInverted = false;
         }
-    }
-
-    static float Constrainf(float amt, float low, float high)
-    {
-        if (amt < low)
-            return low;
-        else if (amt > high)
-            return high;
-        else
-            return amt;
-    }
-
-    public static float BetaflightRateCalc(float rcCommand, float rcRate, float superRate, float expo)
-    {
-        float absRcCommand = Mathf.Abs(rcCommand);
-
-        if (rcRate > 2.0f)
-            rcRate = rcRate + (14.54f * (rcRate - 2.0f));
-
-        if (expo != 0)
-            rcCommand = rcCommand * Mathf.Pow(absRcCommand, 3f) * expo + rcCommand * (1.0f - expo);
-
-        float angleRate = 200.0f * rcRate * rcCommand;
-        if (superRate != 0)
-        {
-            float rcSuperFactor = 1.0f / Constrainf(1.0f - (absRcCommand * superRate), 0.01f, 1.00f);
-            angleRate *= rcSuperFactor;
-        }
-
-        return angleRate;
     }
 
     

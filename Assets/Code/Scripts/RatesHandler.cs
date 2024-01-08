@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RatesHandler
 {
+    // Stores rate settings for one channel.
+
     public string controlledChannel { get; set; }
     public float rcRate {  get; set; }
     public float sRate { get; set; }

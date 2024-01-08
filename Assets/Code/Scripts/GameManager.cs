@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public UIDocument droneSettingsUI;
 
 
-    // ----- TEMPORARY CODE ------ //
+    // Controlls/parents most non-drone related gameplay (ex. gui)
 
     void OpenWindows()
     {
@@ -52,16 +52,11 @@ public class GameManager : MonoBehaviour
     }
 
 
-    // ----- /TEMPORARY CODE ------ //
-
-
-
     void Start()
     {
         controlsUI.gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         OpenWindows();

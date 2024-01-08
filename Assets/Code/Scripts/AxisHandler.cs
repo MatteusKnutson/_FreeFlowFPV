@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class AxisHandler
 {
+     // Channel is "pitch", "yaw" etc
+     // Axis is a number between 0-28
+     // This class stores every setting for a specific channel (not axis as the name would suggest)
+     
     public string controlledChannel { get; set; }
     public int axisIndex { get; set; }
     public float actualMinValue { get; set; }

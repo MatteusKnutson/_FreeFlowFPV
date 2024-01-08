@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DroneHandler
 {
+    // This class stores settings for a drone
+
     public float weight { get; set; }
     public float motorKv { get; set; }
     public float batteryCells { get; set; }
