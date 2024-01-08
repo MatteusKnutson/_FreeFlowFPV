@@ -39,6 +39,22 @@ public class UI_RatesManager : MonoBehaviour
         }
         return true;
     }
+    
+    void ShowCorrectValues()
+    {
+        ratesRoll[0].value = InputManager.rates[0].rcRate;
+        ratesRoll[1].value = InputManager.rates[0].sRate;
+        ratesRoll[2].value = InputManager.rates[0].expo;
+
+        ratesPitch[0].value = InputManager.rates[1].rcRate; 
+        ratesPitch[1].value = InputManager.rates[1].sRate;
+        ratesPitch[2].value = InputManager.rates[1].expo;
+
+        ratesYaw[0].value = InputManager.rates[1].rcRate;
+        ratesYaw[1].value = InputManager.rates[2].sRate;
+        ratesYaw[2].value = InputManager.rates[2].expo;
+    }
+
     private void OnSaveClicked(ClickEvent evt)
     {
 
@@ -66,6 +82,7 @@ public class UI_RatesManager : MonoBehaviour
         ratesYaw = new FloatField[3];
 
         SetCorrectUiComponents();
+        ShowCorrectValues();
 
         btn_save.RegisterCallback<ClickEvent>(OnSaveClicked);
         btn_close.RegisterCallback<ClickEvent>(OnCloseClicked);

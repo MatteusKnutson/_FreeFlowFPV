@@ -41,9 +41,19 @@ public class UI_DroneSettings : MonoBehaviour
         return true;
     }
 
+    void ShowCorrectValues()
+    {
+        prop_d.value = DronePhysicsHandler.droneHandler.propDiameter;
+        prop_pitch.value = DronePhysicsHandler.droneHandler.propPitch;
+        motor_kv.value = DronePhysicsHandler.droneHandler.motorKv;
+        battery_c.value = DronePhysicsHandler.droneHandler.batteryCells;
+        drone_weight.value = DronePhysicsHandler.droneHandler.weight * 1000;
+        camera_angle.value = DronePhysicsHandler.droneHandler.cameraAngle;
+    }
+
     private void OnSaveClicked(ClickEvent evt)
     {
-        DronePhysicsHandler.droneHandler = new DroneHandler(drone_weight.value,motor_kv.value,battery_c.value, prop_pitch.value, prop_d.value, camera_angle.value);
+        DronePhysicsHandler.droneHandler = new DroneHandler(drone_weight.value / 1000,motor_kv.value,battery_c.value, prop_pitch.value, prop_d.value, camera_angle.value);
 
         DronePhysicsHandler.r.mass = drone_weight.value / 1000;
 
@@ -60,6 +70,7 @@ public class UI_DroneSettings : MonoBehaviour
         Time.timeScale = 0;
 
         SetCorrectUiComponents();
+        ShowCorrectValues();
 
         btn_save.RegisterCallback<ClickEvent>(OnSaveClicked);
         btn_close.RegisterCallback<ClickEvent>(OnCloseClicked);
