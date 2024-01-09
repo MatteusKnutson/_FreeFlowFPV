@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if(Input.GetKeyDown(KeyCode.Backspace))
+        if(Input.GetKeyDown(KeyCode.RightShift))
         {
             if (!ratesUI.isActiveAndEnabled && !controlsUI.isActiveAndEnabled && !droneSettingsUI.isActiveAndEnabled)
             {

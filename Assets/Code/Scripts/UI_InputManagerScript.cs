@@ -16,6 +16,8 @@ public class UI_InputManagerScript : MonoBehaviour
     public DropdownField drp_axisChoices;
     public Button btn_close;
 
+    bool checkForChannelChange;
+    List<float> originalValues;
 
     bool SetCorrectUIComponents()
     {
@@ -51,6 +53,7 @@ public class UI_InputManagerScript : MonoBehaviour
     void SetAxisChoices()
     {
         drp_axisChoices.choices.Clear();
+        drp_axisChoices.choices.Add("AUTO");
         for (int i = 1; i <= 28; i++)
         {
             drp_axisChoices.choices.Add(InputManager.defaultAxisName + " " + i);
@@ -77,8 +80,20 @@ public class UI_InputManagerScript : MonoBehaviour
         string newValue = evt.newValue;
         string oldValue = evt.previousValue;
 
-        int axis = int.Parse(newValue.Remove(0, 5));
-        GetSelectedChannel().axisIndex = axis;
+        if(newValue == "AUTO")
+        {
+            originalValues = new List<float>();
+            for(int i = 0; i < 28; i++)
+            {
+                originalValues.Add(InputManager.GetInputValue("Axis", i + 1));
+            }
+            checkForChannelChange = true;
+        }
+        else
+        {
+            int axis = int.Parse(newValue.Remove(0, 5));
+            GetSelectedChannel().axisIndex = axis;
+        }
     }
 
     private void OnDrpChannelChoicesChanged(ChangeEvent<string> evt)
@@ -126,7 +141,6 @@ public class UI_InputManagerScript : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("Test");
         SetCorrectUIComponents();
         ReloadChannelChoices();
         SetAxisChoices();
@@ -152,5 +166,32 @@ public class UI_InputManagerScript : MonoBehaviour
     void Update()
     {
         ShowCorrectValue();
+
+        if(drp_axisChoices.value == "AUTO")
+        {
+            btn_close.visible = false;
+            btn_setMin.visible = false;
+            btn_setMax.visible = false;
+        }
+        else
+        {
+            btn_close.visible = true;
+            btn_setMin.visible = true;
+            btn_setMax.visible = true;
+        }
+
+        if(checkForChannelChange)
+        {
+            for(int i = 0; i < 28; i++)
+            {
+                if (InputManager.GetInputValue("Axis", i+1) > originalValues[i] + 0.5f || InputManager.GetInputValue("Axis", i+1) < originalValues[i] - 0.5f)
+                {
+                    checkForChannelChange = false;
+                    originalValues.Clear(); 
+                    drp_axisChoices.value = "Axis " + (i + 1);
+                    break;
+                }
+            }
+        }
     }
 }
